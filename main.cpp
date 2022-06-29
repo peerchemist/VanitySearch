@@ -272,12 +272,11 @@ void reconstructAdd(Secp256K1 *secp, string fileName, string outputFile, string 
       addr = lines[i].substr(12);
 
       switch (addr.data()[0]) {
-      case '1':
+      case 'P':
         addrType = P2PKH; break;
-      case '3':
+      case 'p':
         addrType = P2SH; break;
-      case 'b':
-      case 'B':
+      case 'pc':
         addrType = BECH32; break;
       default:
         printf("Invalid partialkey info file at line %d\n", i);

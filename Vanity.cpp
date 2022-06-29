@@ -235,19 +235,18 @@ VanitySearch::VanitySearch(Secp256K1 *secp, vector<std::string> &inputPrefixes,s
     // Wild card search
     switch (inputPrefixes[0].data()[0]) {
 
-    case '1':
+    case 'P':
       searchType = P2PKH;
       break;
-    case '3':
+    case 'p':
       searchType = P2SH;
       break;
-    case 'b':
-    case 'B':
+    case 'pc':
       searchType = BECH32;
       break;
 
     default:
-      printf("Invalid start character 1,3 or b, expected");
+      printf("Invalid start character p,P or pc, expected");
       exit(1);
 
     }
@@ -351,22 +350,21 @@ bool VanitySearch::initPrefix(std::string &prefix,PREFIX_ITEM *it) {
 
 
   switch (prefix.data()[0]) {
-  case '1':
+  case 'P':
     aType = P2PKH;
     break;
-  case '3':
+  case 'p':
     aType = P2SH;
     break;
-  case 'b':
-  case 'B':
+  case 'pc':
     std::transform(prefix.begin(), prefix.end(), prefix.begin(), ::tolower);
-    if(strncmp(prefix.c_str(), "bc1q", 4) == 0)
+    if(strncmp(prefix.c_str(), "pc1q", 4) == 0)
       aType = BECH32;
     break;
   }
 
   if (aType==-1) {
-    printf("Ignoring prefix \"%s\" (must start with 1 or 3 or bc1q)\n", prefix.c_str());
+    printf("Ignoring prefix \"%s\" (must start with P or p or pc1q)\n", prefix.c_str());
     return false;
   }
 
@@ -382,7 +380,7 @@ bool VanitySearch::initPrefix(std::string &prefix,PREFIX_ITEM *it) {
     uint8_t witprog[40];
     size_t witprog_len;
     int witver;
-    const char* hrp = "bc";
+    const char* hrp = "pc";
 
     int ret = segwit_addr_decode(&witver, witprog, &witprog_len, hrp, prefix.c_str());
 
