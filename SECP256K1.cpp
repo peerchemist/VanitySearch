@@ -217,7 +217,7 @@ Int Secp256K1::DecodePrivateKey(char *key,bool *compressed) {
       return ret;
     }
 
-    if(privKey[0] != 0x80) {
+    if(privKey[0] != 0xb7) {
       printf("Invalid private key, wrong prefix !\n");
       return ret;
     }
@@ -603,7 +603,7 @@ std::string Secp256K1::GetPrivAddress(bool compressed,Int &privKey) {
 
   unsigned char address[38];
 
-  address[0] = 0x80; // Mainnet
+  address[0] = 0xb7; // Mainnet
   privKey.Get32Bytes(address + 1);
 
   if( compressed ) {
