@@ -716,7 +716,7 @@ std::string Secp256K1::GetAddress(int type, bool compressed,unsigned char *hash1
       break;
 
     case P2SH:
-      address[0] = 0x37;
+      address[0] = 0x75;
       break;
 
     case BECH32:
