@@ -1,6 +1,6 @@
-# VanitySearch
+# VanitySearch-Peercoin
 
-VanitySearch is a bitcoin address prefix finder. If you want to generate safe private keys, use the -s option to enter your passphrase which will be used for generating a base key as for BIP38 standard (*VanitySearch.exe -s "My PassPhrase" 1MyPrefix*). You can also use *VanitySearch.exe -ps "My PassPhrase"* which will add a crypto secure seed to your passphrase.\
+VanitySearch-Peercoin is a Peercoin port of bitcoin address prefix finder. If you want to generate safe private keys, use the -s option to enter your passphrase which will be used for generating a base key as for BIP38 standard (*VanitySearch.exe -s "My PassPhrase" 1MyPrefix*). You can also use *VanitySearch.exe -ps "My PassPhrase"* which will add a crypto secure seed to your passphrase.\
 VanitySearch may not compute a good grid size for your GPU, so try different values using -g option in order to get the best performances. If you want to use GPUs and CPUs together, you may have best performances by keeping one CPU core for handling GPU(s)/CPU exchanges (use -t option to set the number of CPU threads).
 
 # Feature
@@ -18,13 +18,9 @@ VanitySearch may not compute a good grid size for your GPU, so try different val
   <li>Support split-key vanity address</li>
 </ul>
 
-# Discussion Thread
-
-[Disucussion about VanitySearch@bitcointalk](https://bitcointalk.org/index.php?topic=5112311.0)
 
 # Usage
 
-You can downlad latest release from https://github.com/JeanLucPons/VanitySearch/releases
 
 ```
 VanitySearch [-check] [-v] [-u] [-b] [-c] [-gpu] [-stop] [-i inputfile]
@@ -58,52 +54,23 @@ VanitySearch [-check] [-v] [-u] [-b] [-c] [-gpu] [-stop] [-i inputfile]
  -r rekey: Rekey interval in MegaKey, default is disabled
 ```
 
-Exemple (Windows, Intel Core i7-4770 3.4GHz 8 multithreaded cores, GeForce GTX 1050 Ti):
+Example (Windows, AMD Ryzen 7 1700x, GeForce GTX 1070 Ti):
 
 ```
-C:\C++\VanitySearch\x64\Release>VanitySearch.exe -stop -gpu 1TryMe
-VanitySearch v1.17
-Difficulty: 15318045009
-Search: 1TryMe [Compressed]
-Start Fri Jan 31 08:12:19 2020
-Base Key: DA12E013325F12D6B68520E327847218128B788E6A9F2247BC104A0EE2818F44
-Number of CPU thread: 7
-GPU: GPU #0 GeForce GTX 1050 Ti (6x128 cores) Grid(48x128)
-[251.82 Mkey/s][GPU 235.91 Mkey/s][Total 2^32.82][Prob 39.1%][50% in 00:00:12][Found 0]
-PubAddress: 1TryMeJT7cfs4M6csEyhWVQJPAPmJ4NGw
-Priv (WIF): p2pkh:Kxs4iWcqYHGBfzVpH4K94STNMHHz72DjaCuNdZeM5VMiP9zxMg15
-Priv (HEX): 0x310DBFD6AAB6A63FC71CAB1150A0305ECABBE46819641D2594155CD41D081AF1
+C:\C++\VanitySearch\x64\Release>VanitySearch.exe -stop -gpu PTryMe
+VanitySearch v1.19
+Difficulty: 264104224
+Search: PTryMe [Compressed]
+Start Thu Jun 30 16:28:53 2022
+Base Key: D7DA135BA26314A357BC1D7AA0D676C3AE0C242BB7467AAD994023EA2B30A42F
+Number of CPU thread: 15
+GPU: GPU #0 NVIDIA GeForce GTX 1070 Ti (19x128 cores) Grid(152x128)
+
+PubAddress: PTryMeG9MjGxUVPzByXntuUPaoG31btJjN
+Priv (WIF): p2pkh:U8QkPxc3XCCt1pYE95oz3pcMcAoEXsSANczb597nNbYASVPqaK8v
+Priv (HEX): 0x62711B18501596783212079A30B5F45E2CE2598296ACAA23FDB9FD1C91F11D23
 ```
 
-```
-C:\C++\VanitySearch\x64\Release>VanitySearch.exe -stop -gpu 3MyCoin
-VanitySearch v1.11
-Difficulty: 15318045009
-Search: 3MyCoin [Compressed]
-Start Wed Apr  3 14:52:45 2019
-Base Key:FAF4F856077398AE087372110BF47A1A713C8F94B19CDD962D240B6A853CAD8B
-Number of CPU thread: 7
-GPU: GPU #0 GeForce GTX 1050 Ti (6x128 cores) Grid(48x128)
-124.232 MK/s (GPU 115.601 MK/s) (2^33.18) [P 47.02%][50.00% in 00:00:07][0]
-Pub Addr: 3MyCoinoA167kmgPprAidSvv5NoM3Nh6N3
-Priv (WIF): p2wpkh-p2sh:L2qvghanHHov914THEzDMTpAyoRmxo7Rh85FLE9oKwYUrycWqudp
-Priv (HEX): 0xA7D14FBF43696CA0B3DBFFD0AB7C9ED740FE338B2B856E09F2E681543A444D58
-```
-
-```
-C:\C++\VanitySearch\x64\Release>VanitySearch.exe -stop -gpu bc1quantum
-VanitySearch v1.11
-Difficulty: 1073741824
-Search: bc1quantum [Compressed]
-Start Wed Apr  3 15:01:15 2019
-Base Key:B00FD8CDA85B11D4744C09E65C527D35E231D19084FBCA0BF2E48186F31936AE
-Number of CPU thread: 7
-GPU: GPU #0 GeForce GTX 1050 Ti (6x128 cores) Grid(48x128)
-256.896 MK/s (GPU 226.482 MK/s) (2^28.94) [P 38.03%][50.00% in 00:00:00][0]
-Pub Addr: bc1quantum898l8mx5pkvq2x250kkqsj7enpx3u4yt
-Priv (WIF): p2wpkh:L37xBVcFGeAZ9Tii7igqXBWmfiBhiwwiKQmchNXPV2LNREXQDLCp
-Priv (HEX): 0xB00FD8CDA85B11D4744C09E65C527D35E2B1D19095CFCA0BF2E48186F31979C2
-```
 
 # Generate a vanity address for a third party using split-key
 
@@ -213,36 +180,6 @@ Note: The current relase has been compiled with CUDA SDK 11.1, if you have a dif
     $ make gpu=1 CCAP=2.0 all
     ```
 
-Runnig VanitySearch (Intel(R) Xeon(R) CPU, 8 cores,  @ 2.93GHz, Quadro 600 (x2))
-```sh
-$ export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64
-$ ./VanitySearch -t 7 -gpu -gpuId 0,1 1TryMe
-# VanitySearch v1.10
-# Difficulty: 15318045009
-# Search: 1TryMe [Compressed]
-# Start Wed Mar 27 10:26:43 2019
-# Base Key:C6718D8E50C1A5877DE3E52021C116F7598826873C61496BDB7CAD668CE3DCE5
-# Number of CPU thread: 7
-# GPU: GPU #1 Quadro 600 (2x48 cores) Grid(16x128)
-# GPU: GPU #0 Quadro 600 (2x48 cores) Grid(16x128)
-# 40.284 MK/s (GPU 27.520 MK/s) (2^31.84) [P 22.24%][50.00% in 00:02:47][0]
-#
-# Pub Addr: 1TryMeERTZK7RCTemSJB5SNb2WcKSx45p
-# Priv (WIF): Ky9bMLDpb9o5rBwHtLaidREyA6NzLFkWJ19QjPDe2XDYJdmdUsRk
-# Priv (HEX): 0x398E7271AF3E5A78821C1ADFDE3EE90760A6B65F72D856CFE455B1264350BCE8
-```
-
-## Docker
-
-[![Docker Stars](https://img.shields.io/docker/stars/ratijas/vanitysearch.svg)](https://hub.docker.com/r/ratijas/vanitysearch)
-[![Docker Pulls](https://img.shields.io/docker/pulls/ratijas/vanitysearch.svg)](https://hub.docker.com/r/ratijas/vanitysearch)
-
-### Supported tags
-
- * [`latest`, `cuda-ccap-6`, `cuda-ccap-6.0` *(cuda/Dockerfile)*](./docker/cuda/Dockerfile)
- * [`cuda-ccap-5`, `cuda-ccap-5.2` *(cuda/Dockerfile)*](./docker/cuda/Dockerfile)
- * [`cuda-ccap-2`, `cuda-ccap-2.0` *(cuda/ccap-2.0.Dockerfile)*](./docker/cuda/ccap-2.0.Dockerfile)
- * [`cpu` *(cpu/Dockerfile)*](./docker/cpu/Dockerfile)
 
 ### Docker build
 
@@ -250,7 +187,6 @@ Docker images are build for CPU-only version and for each supported CUDA Compute
 
 Docker uses multi-stage builds to improve final image size. Scripts are provided to facilitate the build process.
 
-When building on your own, full image name (including owner/repo parts) can be customized via `IMAGE_NAME` environment variable. It defaults to just `vanitysearch` withour owner part. Pre-built images are available on Docker hub from [@ratijas](https://hub.docker.com/r/ratijas/vanitysearch).
 
 #### Docker build / CPU-only
 
